@@ -28,6 +28,22 @@ $(document).on("keypress", function (e) {
 });
 
 
+function gameStart(){
+
+    if (!started){ 
+        $("#game").show();
+        $("form").hide();
+        $("#level-title").text(playerName + ", Game On");
+
+   nextSequence();
+  // sets the started game to true prevents the function from running again
+   started = true;
+}
+
+}
+
+
+
 //  Used to display the full pattern to the player
 function displayPatter(index, array) {
  

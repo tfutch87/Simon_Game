@@ -28,6 +28,8 @@ a{
   color: white;
 }
 
+
+
 #logo{
 
   max-width: 70px;
@@ -137,4 +139,10 @@ side nav menu */
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
+}
+
+@media only screen and (min-width: 1000px) {
+  #startGame {
+    display: none;
+  }
 }
