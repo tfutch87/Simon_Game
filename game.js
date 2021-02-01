@@ -4,7 +4,8 @@ var gamePattern = [];
 var userClickedPattern = [];
 var level = 0;
 var playerName = prompt(" what is your name? ").toUpperCase(); 
-var highScore;
+var highScore = 0;
+
 
 
 //to keep track of whether if the game has started or not, so you only call nextSequence() on the first keypress.
@@ -16,6 +17,7 @@ $(document).on("keypress", function (e) {
 
     if (!started){ 
         $("#game").show();
+        $("form").hide();
         $("#level-title").text(playerName + ", Game On");
 
    nextSequence();
@@ -107,15 +109,18 @@ function checkAnswer(currentLevel) {
 }
 
 
-
 function nextSequence() {
+
+    var high_score = highScore;
     
     // nextSequence() is triggered, reset the userClickedPattern to an empty array ready for the next level.
   userClickedPattern = []; 
 
+  console.log("level" + level);
+  console.log("level" + highScore);
 
-    $("#score").text("Score: " + level);
-    // $("#level-title").replaceWith('h1 id="level-title"> Good Luck </h1>');
+
+        $("#level").text("level: " + level);
 
     // generates random number from 1-4
     var randomNumber = Math.floor(Math.random() * 4);
@@ -132,15 +137,23 @@ function nextSequence() {
     // animates the colors when selected
     // $('#' + randomChosenColour).fadeIn(100).fadeOut(100).fadeIn(100);
 
-    playsound(randomChosenColour);
+    // playsound(randomChosenColour);
 
     console.log("game patten " + gamePattern);
 
 
       // increase the level 
     level++;
+   
 
     highScore = level;
+
+    if (level > high_score){
+
+        $("#score").text("Score: " + highScore);
+    }
+
+    console.log(highScore);
     
 }
 
@@ -179,10 +192,7 @@ function openNav() {
 
   function startOver(){
 
-    if (highScore < level ){
-        level = 0;
-    }
-    
+    level = 0;    
     gamePattern = [];
     started = false;
     
